@@ -53,13 +53,13 @@ To get started with the Notes-App, follow these steps:
 
 3. **Install dependencies for the Backend Server:**:
    ```bash
-    cd server
+    cd back
     npm install
     ```
 
 4. **Install dependencies for the Frontend**:
    ```bash
-    cd ../client
+    cd ../front
     npm install
     ```
 
