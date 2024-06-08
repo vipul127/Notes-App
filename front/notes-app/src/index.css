@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Geologica:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,7 +6,7 @@
 
 @layer base{
     html{
-        font-family: "Geologica", sans-serif;
+        font-family: "Inter", sans-serif;
         font-optical-sizing: auto;
         font-weight: 500;
         font-style: normal;
@@ -25,11 +25,16 @@
     .more-rounded{
         border-radius: 30px; 
     }
+    .r1{
+        border-radius: 15px;
+    }
     .panel{
         background-color: grey;
-    }
+    }    
+    
+    
     .input-box{
-        @apply w-full text-sm bg-transparent border-[1.5px] px-5 py-3 rounded mb-4 outline-none
+        @apply w-full text-sm bg-transparent border-[1.5px] px-5 py-3 r1 mb-4 outline-none
     }
     .btn-primary{
         @apply w-full text-sm bg-primary p-2 rounded my-1 text-white hover:bg-blue-600
