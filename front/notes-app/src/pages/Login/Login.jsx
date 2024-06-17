@@ -31,7 +31,7 @@ const Login = () => {
       <div className='  flex items-center justify-center mt-28'>
         <div className='w-96 border more-rounded bg-white px-7 py-10'>
           <form onSubmit={handleLogin}>
-            <h4 className='text-2xl mb-7'>Login</h4>
+            <h4 className='text-2xl mb-7 font-bold'>Login</h4>
             <input type='text' placeholder='Enter Email' className='input-box'
             value={email}
             onChange={(e) => setEmail(e.target.value)}

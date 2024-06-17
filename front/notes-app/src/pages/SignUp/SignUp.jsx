@@ -14,13 +14,8 @@ const SignUp = () => {
         setError("Please Enter a Valid Email...")
         return
       }
-      
       setError("")
-      
       navigate ('/welcome', { state: { name: name } }); 
-       
-      
-       
     }
   return (
     <>
@@ -28,7 +23,7 @@ const SignUp = () => {
     <div className='  flex items-center justify-center mt-28'>
       <div className='w-96 border more-rounded bg-white px-7 py-10'>
         <form onSubmit={handleSignUp}>
-          <h4 className='text-2xl mb-7'>SignUp</h4>
+          <h4 className='text-2xl mb-7 font-bold'>SignUp</h4>
           <input 
             type='text' 
             placeholder='Enter Your Name' 
