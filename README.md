@@ -56,14 +56,19 @@ To get started with the Notes-App, follow these steps:
     cd back
     npm install
     ```
+4. **Create and update .env at Back Folder**
+    ```bash
+    CONNECTION_STRING=mongodb+srv://username:password@cluster0.mongodb.net/mydatabase?retryWrites=true&w=majority
+    ACCESS_TOKEN_SECRET=youraccesstokensecret
+    ```
 
-4. **Install dependencies for the Frontend**:
+5. **Install dependencies for the Frontend**:
    ```bash
     cd ../front
     npm install
     ```
 
-5. **Start the development server:**:
+6. **Start the development server:**:
    ```bash
    npm start
     ```
