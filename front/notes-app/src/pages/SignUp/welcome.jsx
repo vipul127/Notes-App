@@ -1,13 +1,15 @@
 import React, {useState} from 'react'
-import {useLocation } from 'react-router-dom'
+import {useLocation, useNavigate } from 'react-router-dom'
 import Navbar from '../../components/Navbar/Navbar';
 import PasswordInput from '../../components/Input/PasswordInput';
+import axiosInstance from '../../utils/axiosinstance';
 
 const welcome = () => {
   const location = useLocation();
-  const { name } = location.state || {}
+  const { name, email } = location.state || {}
   const[password, setPassword] = useState("");
   const[error, setError] = useState(null)
+  const navigate = useNavigate()
 
   const handleWelcome = async (e) => {
     e.preventDefault();
@@ -17,6 +19,34 @@ const welcome = () => {
     }
         
     setError("")
+
+    //API part
+    try {
+      const response = await axiosInstance.post("/create-account",{
+        fullName: name,
+        email: email,
+        password: password,
+
+      })
+
+      if(response.data && response.data.error){
+        setError(response.data.message)
+        return 
+      }
+
+      if(response.data && response.data.accessToken){
+        localStorage.setItem("token", response.data.accessToken)
+        navigate('/dashboard')
+      }
+
+    } catch(error){
+        if(error.response && error.response.data && error.response.data.message){
+          setError(error.response.data.message)
+        } else {
+          setError("An unexpected error occurred. Please try again.")
+        }
+    }
+
      
   }
 

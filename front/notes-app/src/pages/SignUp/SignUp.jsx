@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import {Link, useNavigate, useLocation} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import { isValidEmail } from '../../utils/helper';
 import Navbar from '../../components/Navbar/Navbar';
 
@@ -15,7 +15,7 @@ const SignUp = () => {
         return
       }
       setError("")
-      navigate ('/welcome', { state: { name: name } }); 
+      navigate ('/welcome', { state: { name: name, email: email } }); 
     }
   return (
     <>
