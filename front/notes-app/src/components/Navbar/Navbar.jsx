@@ -21,9 +21,10 @@ const Navbar = ({ userInfo }) => {
   };
 
   return (
-    <div className='bg-white flex items-center drop-shadow justify-between px-6 py-2'>
-      <h1 className='text-xl font-medium py-2'>Notes</h1>
+    <div className='bg-white items-center drop-shadow flex justify-between  px-6 py-2'>
+      <h1 className='grid text-xl font-medium py-2]'>Notes</h1>
       <SearchBar
+        
         value={searchQuery}
         onChange={({ target }) => {
           setSearchQuery(target.value);

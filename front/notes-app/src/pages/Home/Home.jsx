@@ -7,6 +7,9 @@ import axiosInstance from '../../utils/axiosinstance';
 import Modal from 'react-modal'
 import Footer from '../../components/Footer/Footer'
 import { useNavigate } from 'react-router-dom'
+import Toast from '../../components/ToastMessage/Toast'
+import EmptyCard from '../../components/EmptyCard/EmptyCard'
+import AddNotesImg from '../../assets/images/add-note.svg'
 Modal.setAppElement('#root');
 
 const Home = () => {
@@ -16,6 +19,12 @@ const Home = () => {
     data: null
   })
 
+  const [showToast, setshowToast] = useState({
+    isShown: false,
+    message: "",
+    type: "add",
+
+  })
   const [allNotes, setAllNotes] = useState([])
 
   const [userInfo, setUserInfo] = useState(null)
@@ -24,6 +33,14 @@ const Home = () => {
 
   const handleEdit = (noteDetails) => {
     setOpenAddEditModal({isShown:true, data: noteDetails, type: "edit"})
+  }
+
+  const showToastMsg = (message,type) => {
+    setshowToast({isShown: true, message, type})
+  }
+
+  const handleCloseToast = () => {
+    setshowToast({ isShown: false, message: "", type: "add" });
   }
 
   const getUserInfo = async () => {
@@ -51,6 +68,22 @@ const Home = () => {
     }
   }
 
+  const deleteNote = async (data) => {
+    const noteId = data._id
+    try {
+        const response = await axiosInstance.delete("/delete-note/"+ noteId)
+      
+        if (response.data && !response.data.error) {
+            showToastMsg("Note Deleted Successfully", 'delete')
+            getAllNotes();
+        }
+    } catch (error) {
+        if (error.response && error.response.data && error.response.data.message) {
+            console.log("An unexpected error occured. Please Try again")
+        }
+    }
+};
+
   useEffect(() => {
     getAllNotes()
     getUserInfo()  
@@ -61,8 +94,18 @@ const Home = () => {
     <div className="flex flex-col min-h-screen"> 
       
       <Navbar userInfo={userInfo}/>
-      <div className="container mx-auto flex-grow"> 
-        <div className="grid grid-cols-3 gap-4 mt-8">
+      
+      <div className="container mx-auto flex-grow mt-12  ">
+      <div className="flex items-center justify-center">
+          <Toast
+        isShown={showToast.isShown}
+        message={showToast.message}
+        type={showToast.type}
+        onClose={handleCloseToast}
+       />
+          </div>
+          {allNotes.length > 0 ? <div className="grid grid-cols-3 gap-4 mt-8 ">
+        
         {allNotes.map((item,index)=> (
         <NoteCard
         key={item._id} 
@@ -72,11 +115,11 @@ const Home = () => {
         tags={item.tags}
         isPinned={item.isPinned}
         onEdit={() => handleEdit(item)}
-        onDelete={()=>{}}
+        onDelete={()=>deleteNote(item)}
         onPinNote={()=>{}}
         />
       ))}
-        </div>
+        </div> : (<EmptyCard imgSrc={AddNotesImg} message={`Start Creating your First Note! Click 'New Note' Button to Start writing down ideas and thoughts. Start Now!!`}/>)}
       </div>
       <div className='right-10 top-10 fixed py-10'>
       <button className=' w-30 h-11 flex items-center justify-center rounded-3xl btn-primary font-medium border border-blue-500 p-3 hover:shadow-md transition-shadow duration-300 hover:animate-bounce'
@@ -108,9 +151,10 @@ const Home = () => {
         }}
 
         getAllNotes={getAllNotes}
+        showToastMsg={showToastMsg}
         />
       </Modal>
-
+          
       <Footer />
     </div>
   )

@@ -12,18 +12,18 @@ const Footer = () => {
 
   return (
     <>
-        <div className='bg-black grid grid-cols-2 gap-4 mt-10 text-white py-10 px-72 w-full flex flex-warp'>
-            <div className='w-9/12'>
-              <div className="text-5xl font-extrabold">
+        <div className='bg-black grid grid-cols-2 gap-4 mt-10 text-white py-8 px-40 '>
+            <div className=''>
+              <div className="text-5xl font-extrabold mt-12">
                   Want to connect?
               </div>
-              <div className=''>
-                <p className='text-slate-500 pt-5'>Notes App is built using the MERN stack, allows users to create, edit, and manage personal notes efficiently with a user-friendly interface and secure data storage.</p>
+              <div className='flex flex-warp w-1/2'>
+                <p className='text-slate-500 pt-4 '>Notes App is built using the MERN stack, allows users to create, edit, and manage personal notes efficiently with a user-friendly interface and secure data storage.</p>
               </div>
             </div>
 
             
-            <div className=" flex flex-col justify-center mt-6 flex-warp items-end mr-10 ">
+            <div className=" flex flex-col justify-center  flex-warp items-end mr-10 ">
                 <div className="py-3 items-center flex mr-4 ani">
                       <AnimatedSocialIcon
                           brandName="github"
@@ -62,7 +62,7 @@ const Footer = () => {
             </div>
             
 
-            <div className='mb-3 text-slate-300'>&copy; {new Date().getFullYear()}</div>
+            <div className='text-slate-300'>&copy; {new Date().getFullYear()}</div>
 
         </div>
           
