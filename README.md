@@ -1,6 +1,6 @@
 # 📝 Notes-App
 
-Welcome to the **Notes-App** repository! This application is designed to help you manage your notes effectively, offering a user-friendly interface to create, read, update, and delete notes. It also serves as a platform for learning Git, GitHub, and various Git commands more efficiently. 
+Welcome to the **Notes-App** repository! This application is designed to help you manage your notes effectively, offering a user-friendly interface to create, read, update, and delete notes. It also serves as a one of My project for learning Git, GitHub, and various Git commands more efficiently. Also, it helps in learning application and devtools like PostMan apart for project itself. Improvements in the wil be made with time. 
 
 This repository contains the entire codebase for this application, built using the **MERN** stack:
 
