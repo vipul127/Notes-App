@@ -10,6 +10,8 @@ import { useNavigate } from 'react-router-dom'
 import Toast from '../../components/ToastMessage/Toast'
 import EmptyCard from '../../components/EmptyCard/EmptyCard'
 import AddNotesImg from '../../assets/images/add-note.svg'
+import NoData from '../../assets/images/no-data.svg'
+
 Modal.setAppElement('#root');
 
 const Home = () => {
@@ -28,6 +30,8 @@ const Home = () => {
   const [allNotes, setAllNotes] = useState([])
 
   const [userInfo, setUserInfo] = useState(null)
+
+  const [isSearch, setIsSearch] = useState(false)
 
   const navigate = useNavigate()
 
@@ -84,6 +88,45 @@ const Home = () => {
     }
 };
 
+  const onSearchNote = async (query) => {
+    try {
+      const response = await axiosInstance.get("/search-note",{
+        params: {query}
+      })
+
+      if(response.data && response.data.notes ){
+        setIsSearch(true)
+        setAllNotes(response.data.notes)
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const updateisPinned = async (noteData) => {
+    const noteId = noteData._id
+        try {
+            const response = await axiosInstance.put("/update-note-pinned/"+ noteId, {
+                "isPinned" : !noteData.isPinned            
+              });
+
+            if (response.data && response.data.note) {
+                showToastMsg("Note Updated Successfully")
+                getAllNotes();
+                onClose();
+            }
+        } catch (error) {
+            console.log(error)
+        }
+
+  }
+
+
+  const handleClearSearch= () => {
+    setIsSearch(false)
+    getAllNotes()
+  }
+
   useEffect(() => {
     getAllNotes()
     getUserInfo()  
@@ -93,7 +136,7 @@ const Home = () => {
   return (
     <div className="flex flex-col min-h-screen"> 
       
-      <Navbar userInfo={userInfo}/>
+      <Navbar userInfo={userInfo} onSearchNote={onSearchNote} handleClearSearch={handleClearSearch}/>
       
       <div className="container mx-auto flex-grow mt-12  ">
       <div className="flex items-center justify-center">
@@ -116,10 +159,10 @@ const Home = () => {
         isPinned={item.isPinned}
         onEdit={() => handleEdit(item)}
         onDelete={()=>deleteNote(item)}
-        onPinNote={()=>{}}
+        onPinNote={()=>{updateisPinned(item)}}
         />
       ))}
-        </div> : (<EmptyCard imgSrc={AddNotesImg} message={`Start Creating your First Note! Click 'New Note' Button to Start writing down ideas and thoughts. Start Now!!`}/>)}
+        </div> : (<EmptyCard imgSrc={isSearch? NoData: AddNotesImg} message={isSearch ? `Matching note was 'Not Found' and does not exist! ` : `Start Creating your First Note! Click 'New Note' Button to Start writing down ideas and thoughts. Start Now!!`}/>)}
       </div>
       <div className='right-10 top-10 fixed py-10'>
       <button className=' w-30 h-11 flex items-center justify-center rounded-3xl btn-primary font-medium border border-blue-500 p-3 hover:shadow-md transition-shadow duration-300 hover:animate-bounce'
