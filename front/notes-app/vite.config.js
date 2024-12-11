@@ -9,4 +9,5 @@ export default defineConfig({
       '@emotion/react': '@emotion/react'
     },
   },
+  build: { outDir: 'dist' }
 });
