@@ -2,7 +2,6 @@ import React from 'react'
 import {AnimatedSocialIcon} from 'react-animated-social-icons'
 import { Link, useNavigate } from 'react-router-dom';
 
-
 const Footer = () => {
 
   const handleSocial = () => {
@@ -22,7 +21,6 @@ const Footer = () => {
               </div>
             </div>
 
-            
             <div className=" flex flex-col justify-center  flex-warp items-end mr-10 ">
                 <div className="py-3 items-center flex mr-4 ani">
                       <AnimatedSocialIcon
@@ -31,8 +29,6 @@ const Footer = () => {
                           animation="bounce"
                           width="2em"
                           animationDuration={0.8}
-                          
-
                       />
                      <Link to="https://github.com/Lost-Arch" className='text-m indent-9 text-white opacity-80 transition-opacity duration-800 hover:opacity-100 '> Github</Link>
                 </div>
@@ -48,7 +44,7 @@ const Footer = () => {
                 </div>
                 <button 
                 className="py-3 items-center flex mr-3 ani"
-                onClick={()=>{handleSocial}}
+                onClick={()=>{handleSocial()}}
                 >
                 <AnimatedSocialIcon
                       brandName="twitter"
@@ -60,12 +56,9 @@ const Footer = () => {
                   <Link to="https://github.com/Lost-Arch" className='text-m indent-9 text-white opacity-80 transition-opacity duration-800 hover:opacity-100'> Twitter </Link>
                 </button>
             </div>
-            
 
             <div className='text-slate-300'>&copy; {new Date().getFullYear()}</div>
-
         </div>
-          
     </>
   )
 }
