@@ -5,7 +5,13 @@ const express = require("express");
 const cors = require("cors");
 const path = require("path");
 
-mongoose.connect(process.env.CONNECTION_STRING);
+mongoose.connect(process.env.CONNECTION_STRING, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => {
+    console.log('MongoDB connected successfully');
+  })
+  .catch((err) => {
+    console.error('MongoDB connection error:', err);
+  });
 
 const User = require("./models/user.model");
 const Note = require("./models/note.model");
