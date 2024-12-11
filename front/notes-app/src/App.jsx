@@ -3,8 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import Home from './pages/Home/Home';
 import Login from './pages/Login/Login';
 import SignUp from './pages/SignUp/SignUp';
-import Welcome from './pages/SignUp/Welcome';
-
+import Welcome from './pages/SignUp/welcome.jsx';
 const routes = (
   <Router>
     <Routes>
