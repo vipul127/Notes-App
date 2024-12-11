@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import Home from './pages/Home/Home';
 import Login from './pages/Login/Login';
 import SignUp from './pages/SignUp/SignUp';
-import Welcome from './pages/SignUp/Welcome';
+import Welcome from './pages/SignUp/welcome';
 
 const routes = (
   <Router>
@@ -12,7 +12,7 @@ const routes = (
       <Route path="/dashboard" exact element={<Home />} />
       <Route path="/login" exact element={<Login />} />
       <Route path="/SignUp" exact element={<SignUp />} />
-      <Route path="/welcome" exact element={<Welcome />} />
+      <Route path="/welcome" exact element={<welcome />} />
     </Routes>
   </Router>
 );
